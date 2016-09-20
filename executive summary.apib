@@ -1,0 +1,142 @@
+FORMAT: 1A
+HOST: https://v1.api.dudesolutions.io
+
+USECOMMONSDKLIBRARY: TRUE
+GENERATEASYNCCODE: TRUE
+GENERATEINTERFACES: TRUE
+USEMETHODPREFIX: TRUE
+USEMODELPOSTFIX: FALSE
+USECONTROLLERPOSTFIX: FALSE
+USEENUMPOSTFIX: FALSE
+USECONSTRUCTORSFORCONFIG: TRUE
+CSHARPDEFAULTNAMESPACE: DSI.SDK.Event
+JAVADEFAULTNAMESPACE: io.dudesolutions.event
+BRANDLABEL: Dude Solutions, Inc.
+USERAGENT: Dude SDK
+NULLIFY404: TRUE
+VALIDATEREQUIREDPARAMETERS: FALSE
+COLLECTPARAMETERS: TRUE
+
+# Dude Event Api
+
+## Reference
+Good reference document: https://raw.githubusercontent.com/apiaryio/api-blueprint/master/examples/Polls%20API.md
+
+## Authentication
+*[API Name]* uses OAuth v2 Authorization. First you create a new (or acquire existing) OAuth v2 token using [DudeAuth](https://www.dudeauth.com/).
+
+## Media Types
+Where applicable this API uses the *JSON* media-type to represent resources.
+
+Requests and responses with a message-body use plain JSON to set or update resources.
+
+## Error States
+The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md) are used throughout this API.
+
+In addition to standard response codes the response object returned from the server during an exception event may contain additional information in the following JSON format:
+
+        {
+            "message": "SOME MESSAGE",
+            "dudeReferenceId": "3523845A-4729-4CCB-9E16-01DEADF6C2DF",
+            "stackTrace": "Null, Typically"
+        }
+
+# Group System Information
+
+## System Information [/]
+
+### GET
+
++ Response 200 (application/json)
+    + Attributes (System Information)
+
+# Group Heartbeat
+
+## Heartbeat [/heartbeat]
+The heartbeat is exposed and provided to check for availability of the service.
+Any response that does not provide a ```200 OK``` response code should be treated as an error.
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+    + Headers
+
+            X-Dude-Api-Limit: Unlimited or Number
+            X-Dude-Api-Remaining: Unlimited or Number
+            X-Dude-Api-Server: Api Server ID
+
+    + Attributes (Heartbeat)
+
+
+# Executive Summaries
+
+## Summary Collection [/accounts/{accountId}/executivesummaries{?page,pagesize,orderby,types}]
+
++ Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
+    + page: 1 (number, optional) - {INT} The page to request from the collection.
+    + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
+	+ types: 0 (number, optional) - {INT} The type of records to filter by.
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (Base Collection Response)
+        + `data` (array[Base Summary Data], required)
+
+## Summary Create [/accounts/{accountId}/executivesummaries]
+
++ Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
+
+### POST
+
++ Request
+    + Attributes (Base Summary Data)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (Base Summary Data)
+
+# Data Structures
+
+## System Information (object)
++ `application`: `Dude Event Api` (string, required) - The name of the application.
++ `version` : `1.0.0.0` (string, required) - The assembly version.
++ `apiVersion` : `1.0.0.0` (string, required) - The API version.
++ `vitals` (Heartbeat, required) - The state of the system dependencies.
++ `links` (array[System Links], required) - The API routes.
+
+## System Links (object)
++ `endpoint` : `WorkOrder` (string, required) - The name of the endpoint.
++ `action` : `Get` (string, required) - The REST action.
++ `route` : `/accounts/{accountId}/workorders` (string, required) - The route to the endpoint.
+
+## Heartbeat (object)
++ `cachevitalcheck`: true (boolean, required) - Vital check to ensure something is online.
++ `eventdbvitalcheck`: true (boolean, required) - Vital check to ensure something is online.
+
+## Base Collection Response (object)
++ `page`: 1 (number, required) - {INT} The current page provided in the response data.
++ `pageSize`: 1000 (number, required) - {INT} The page size returned in the response data.
++ `dataSize` (number, required) - {INT} The total records returned in the response.
++ `total` (number, required) - {INT} The total number of records available in the collection.
+
+## Base User Object (object)
++ `id`: 1 (number, required) - {INT} The ID of the user.
++ `firstName`: "John" (string, required) - The first name of the user.
++ `lastName`: "Smith" (string, required) - The last name of the user.
++ `email`: "john.smith@dudesolutions.io" (string, required) - The email address of the user.
+
+## Base Client Object (object)
++ `id`: 1 (number, required) - {INT} The ID of the API client.
+
+## Executive Summary Types
++ Maintenance (string)
++ Event (string)
+
+## Base Summary Data (object)
++ `id`: 1 (number, required) - {INT} The ID of the executive summary.
++ `types`: Event (Executive Summary Types, optional) - The type of executive summary.
++ `date`: `2016-08-21T19:13:19.5084411Z` (string, optional) - {DATETIME} The date and time in ISO-8601 format the record was created.
++ `fileApiId`: 1234 (number, optional) - {INT} The Id of the file object in file api.
++ `shareableUri`: http://google.com/?q=test (string, optional) - The URI that can be used to access the file without logging in.
