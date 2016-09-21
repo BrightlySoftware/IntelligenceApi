@@ -82,20 +82,29 @@ Any response that does not provide a ```200 OK``` response code should be treate
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes (Base Collection Response)
-        + `data` (array[Base Summary Data], required)
-
-## Summary Create [/accounts/{accountId}/executivesummaries]
-
-+ Parameters
-    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
+        + `data` (array[Executive Summary Data], required)
 
 ### POST
 
 + Request
-    + Attributes (Base Summary Data)
+    + Attributes (Executive Summary Data)
 
 + Response 201 (application/json; charset=utf-8)
-    + Attributes (Base Summary Data)
+    + Attributes (Executive Summary Data)
+
+## Summary Collection Detail [/accounts/{accountId}/executivesummaries/{Id}]
+
++ Parameters
+    + Id: 1011 (required, number) - {INT} ID of the execute summary to be retrieved.
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (Executive Summary Data)
+
+### DELETE
+
++ Response 204
 
 # Data Structures
 
@@ -134,8 +143,8 @@ Any response that does not provide a ```200 OK``` response code should be treate
 + Maintenance (string)
 + Event (string)
 
-## Base Summary Data (object)
-+ `id`: 1 (number, required) - {INT} The ID of the executive summary.
+## Executive Summary Data (object)
++ `id`: 1 (number, optional) - {INT} The ID of the executive summary.
 + `types`: Event (Executive Summary Types, optional) - The type of executive summary.
 + `date`: `2016-08-21T19:13:19.5084411Z` (string, optional) - {DATETIME} The date and time in ISO-8601 format the record was created.
 + `fileApiId`: 1234 (number, optional) - {INT} The Id of the file object in file api.
