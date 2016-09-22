@@ -140,8 +140,10 @@ Any response that does not provide a ```200 OK``` response code should be treate
 + `id`: 1 (number, required) - {INT} The ID of the API client.
 
 ## Executive Summary Data (object)
-+ `id`: 1 (number, optional) - {INT} The ID of the executive summary.
-+ `type`: "Event" (string, optional) - The type of executive summary.
-+ `date`: `2016-08-21T19:13:19.5084411Z` (string, optional) - {DATETIME} The date and time in ISO-8601 format the record was created.
-+ `fileDescriptorId`: 1234 (number, optional) - {INT} The Id of the file object in file api.
-+ `shareableUri`: http://google.com/?q=test (string, optional) - The URI that can be used to access the file without logging in.
++ `id`: 1 (number) - {INT} The ID of the executive summary.
++ `type`: "Event" (string) - The type of executive summary.
++ `name`: "FileName" (string) - The name of the executive summary file.
++ `date`: `2016-08-21T19:13:19.5084411Z` (string) - {DATETIME} The date and time in ISO-8601 format the record was created.
++ `fileDescriptorId`: 1234 (number) - {LONG} The Id of the file object in file api.
++ `shareableUri`: http://google.com/?q=test (string) - The URI that can be used to access the file without logging in.
++ `size`: 1028 (number) - {LONG} The URI that can be used to access the file without logging in.
