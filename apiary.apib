@@ -70,13 +70,13 @@ Any response that does not provide a ```200 OK``` response code should be treate
 
 # Executive Summaries
 
-## Summary Collection [/accounts/{accountId}/executivesummaries{?page,pagesize,orderby,types}]
+## Summary Collection [/accounts/{accountId}/executivesummaries{?page,pagesize,orderby,type}]
 
 + Parameters
     + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + page: 1 (number, optional) - {INT} The page to request from the collection.
     + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
-	+ types: 0 (number, optional) - {INT} The type of records to filter by.
+	+ type: "Event" (string, optional) - The type of records to filter by.
 
 ### GET
 
@@ -92,10 +92,10 @@ Any response that does not provide a ```200 OK``` response code should be treate
 + Response 201 (application/json; charset=utf-8)
     + Attributes (Executive Summary Data)
 
-## Summary Collection Detail [/accounts/{accountId}/executivesummaries/{Id}]
+## Summary Collection Detail [/accounts/{accountId}/executivesummaries/{id}]
 
 + Parameters
-    + Id: 1011 (required, number) - {INT} ID of the execute summary to be retrieved.
+    + id: 1011 (required, number) - {INT} Id of the execute summary to be retrieved.
 
 ### GET
 
@@ -109,7 +109,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
 # Data Structures
 
 ## System Information (object)
-+ `application`: `Dude Event Api` (string, required) - The name of the application.
++ `application`: `Dude Intelligence Api` (string, required) - The name of the application.
 + `version` : `1.0.0.0` (string, required) - The assembly version.
 + `apiVersion` : `1.0.0.0` (string, required) - The API version.
 + `vitals` (Heartbeat, required) - The state of the system dependencies.
@@ -122,7 +122,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
 
 ## Heartbeat (object)
 + `cachevitalcheck`: true (boolean, required) - Vital check to ensure something is online.
-+ `eventdbvitalcheck`: true (boolean, required) - Vital check to ensure something is online.
++ `intelligencedbvitalcheck`: true (boolean, required) - Vital check to ensure something is online.
 
 ## Base Collection Response (object)
 + `page`: 1 (number, required) - {INT} The current page provided in the response data.
@@ -139,13 +139,9 @@ Any response that does not provide a ```200 OK``` response code should be treate
 ## Base Client Object (object)
 + `id`: 1 (number, required) - {INT} The ID of the API client.
 
-## Executive Summary Types
-+ Maintenance (string)
-+ Event (string)
-
 ## Executive Summary Data (object)
 + `id`: 1 (number, optional) - {INT} The ID of the executive summary.
-+ `types`: Event (Executive Summary Types, optional) - The type of executive summary.
++ `type`: "Event" (string, optional) - The type of executive summary.
 + `date`: `2016-08-21T19:13:19.5084411Z` (string, optional) - {DATETIME} The date and time in ISO-8601 format the record was created.
-+ `fileApiId`: 1234 (number, optional) - {INT} The Id of the file object in file api.
++ `fileDescriptorId`: 1234 (number, optional) - {INT} The Id of the file object in file api.
 + `shareableUri`: http://google.com/?q=test (string, optional) - The URI that can be used to access the file without logging in.
