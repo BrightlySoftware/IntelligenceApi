@@ -76,6 +76,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
     + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + page: 1 (number, optional) - {INT} The page to request from the collection.
     + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
+    + orderby: Name asc (string, optional) - A string describing the ordering to perform on the collection.
     + type: "Event" (string, optional) - The type of records to filter by.
 
 ### GET
@@ -95,6 +96,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
 ## Summary Collection Detail [/accounts/{accountId}/executivesummaries/{id}]
 
 + Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + id: 1011 (required, number) - {INT} Id of the execute summary to be retrieved.
 
 ### GET
@@ -114,6 +116,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
     + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + page: 1 (number, optional) - {INT} The page to request from the collection.
     + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
+    + orderby: Name asc (string, optional) - A string describing the ordering to perform on the collection.
 
 ### GET
 
@@ -132,6 +135,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
 ## Summary Collection Detail [/accounts/{accountId}/scheduledreports/{id}]
 
 + Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + id: 1011 (required, number) - {INT} Id of the scheduled report to be retrieved.
 
 ### GET
