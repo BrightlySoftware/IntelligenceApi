@@ -76,6 +76,7 @@ Any response that does not provide a ```200 OK``` response code should be treate
     + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + page: 1 (number, optional) - {INT} The page to request from the collection.
     + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
+    + orderby: Name asc (string, optional) - A string describing the ordering to perform on the collection.
     + type: "Event" (string, optional) - The type of records to filter by.
 
 ### GET
@@ -95,12 +96,52 @@ Any response that does not provide a ```200 OK``` response code should be treate
 ## Summary Collection Detail [/accounts/{accountId}/executivesummaries/{id}]
 
 + Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
     + id: 1011 (required, number) - {INT} Id of the execute summary to be retrieved.
 
 ### GET
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes (Executive Summary Data)
+
+### DELETE
+
++ Response 204
+
+# Group Scheduled Reports
+
+## Scheduled Reports Collection [/accounts/{accountId}/scheduledreports{?page,pagesize,orderby}]
+
++ Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
+    + page: 1 (number, optional) - {INT} The page to request from the collection.
+    + pagesize: 1000 (number, optional) - {INT} The number of records to load in a page from the collection.
+    + orderby: Name asc (string, optional) - A string describing the ordering to perform on the collection.
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (Base Collection Response)
+        + `data` (array[Scheduled Report Data], required)
+
+### POST
+
++ Request
+    + Attributes (Scheduled Report Data)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (Scheduled Report Data)
+
+## Scheduled Reports Collection Detail [/accounts/{accountId}/scheduledreports/{id}]
+
++ Parameters
+    + accountId: 1011 (required, number) - {INT} ID of the account in the form of an integer
+    + id: 1011 (required, number) - {INT} Id of the scheduled report to be retrieved.
+
+### GET
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (Scheduled Report Data)
 
 ### DELETE
 
@@ -143,6 +184,14 @@ Any response that does not provide a ```200 OK``` response code should be treate
 + `id`: 1 (number) - {INT} The ID of the executive summary.
 + `type`: "Event" (string) - The type of executive summary.
 + `name`: "FileName" (string) - The name of the executive summary file.
++ `date`: `2016-08-21T19:13:19.5084411Z` (string) - {DATETIME} The date and time in ISO-8601 format the record was created.
++ `fileDescriptorId`: 1234 (number) - {LONG} The Id of the file object in file api.
++ `shareableUri`: http://google.com/?q=test (string) - The URI that can be used to access the file without logging in.
++ `size`: 1028 (number) - {LONG} The size of the file in bytes.
+
+## Scheduled Report Data (object)
++ `id`: 1 (number) - {INT} The ID of the scheduled report.
++ `name`: "FileName" (string) - The name of the scheduled report file.
 + `date`: `2016-08-21T19:13:19.5084411Z` (string) - {DATETIME} The date and time in ISO-8601 format the record was created.
 + `fileDescriptorId`: 1234 (number) - {LONG} The Id of the file object in file api.
 + `shareableUri`: http://google.com/?q=test (string) - The URI that can be used to access the file without logging in.
